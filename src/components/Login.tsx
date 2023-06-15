@@ -5,6 +5,7 @@ import { setAuthToken } from '../commons';
 import { Navigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { UserContext } from '../Contexts';
+import { Input } from 'antd';
 
 interface LoginProps {
 }
@@ -54,16 +55,16 @@ const Login: React.FC<LoginProps> = () => {
 			<h2>Login</h2>
 			<form className="login-form" onSubmit={handleSubmit}>
 				<div className="form-group">
-					<label style={{fontWeight: 'bold'}} htmlFor="username">Username:</label>
-					<input
+					<StyledLabel style={{fontWeight: 'bold'}} htmlFor="username">Username:</StyledLabel>
+					<Input
 						id="username"
 						value={username}
 						onChange={(e) => setUsername(e.target.value)}
 					/>
 				</div>
 				<div className="form-group">
-					<label style={{fontWeight: 'bold'}} htmlFor="password">Password:</label>
-					<input
+					<StyledLabel style={{fontWeight: 'bold'}} htmlFor="password">Password:</StyledLabel>
+					<Input
 						type="password"
 						id="password"
 						value={password}
@@ -87,6 +88,13 @@ const StyledButton = styled.button`
 	:hover {
 		background-color: #45a049;
 	}
+`;
+
+const StyledLabel = styled.label`
+	fontWeight: bold;
+	margin-right: 10px;
+	display: flex;
+	align-items: center;
 `;
 
 export default Login;

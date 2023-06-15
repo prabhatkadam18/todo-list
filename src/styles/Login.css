@@ -22,7 +22,7 @@
 	justify-content: space-between;
 }
 
-input[type='password'] {
+input {
 	padding: 5px;
 	border: 1px solid #ccc;
 	border-radius: 4px;
