@@ -1,26 +1,25 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import AppRoutes from "./AppRoutes";
+
+import { UserContext, TodosContext, defaultState } from "./Contexts";
+import { TodoType, UserType } from "./types";
+import { setAuthToken } from "./commons";
+
+const token = localStorage.getItem("token");
+if (token) {
+	setAuthToken(token);
+}
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+	const [user, setUser] = useState<UserType>(defaultState.user);
+	const [todos, setTodos] = useState<TodoType[]>(defaultState.todos);
+
+	return <UserContext.Provider value={{ user, setUser }}>
+		<TodosContext.Provider value={{ todos, setTodos }}>
+			<AppRoutes />
+		</TodosContext.Provider>
+	</UserContext.Provider>;
 }
 
 export default App;
